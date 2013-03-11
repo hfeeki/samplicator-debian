@@ -1,0 +1,10 @@
+# Defaults for samplicator initscript
+# sourced by /etc/init.d/samplicator
+# installed at /etc/default/samplicator by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# Additional options that are passed to the Daemon.
+DAEMON_OPTS="-f -x 655360 -S -c /etc/samplicator.cfg"

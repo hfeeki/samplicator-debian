@@ -1,0 +1,23 @@
+Source: samplicator
+Section: net
+Priority: extra
+Maintainer: John Francesco Ferlito <johnf@inodes.org>
+Build-Depends: debhelper (>= 8.0.0), autotools-dev
+Standards-Version: 3.9.3
+Homepage: https://code.google.com/p/samplicator/
+Vcs-Svn: http://samplicator.googlecode.com/svn/trunk/
+Vcs-Browser: https://code.google.com/p/samplicator/source/browse/
+
+Package: samplicator
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Send copies of (UDP) datagrams to multiple receivers
+ Listens for UDP datagrams on a network port, and sends copies of these
+ datagrams on to a set of destinations. Optionally, it can perform sampling,
+ i.e. rather than forwarding every packet, forward only 1 in N. Another option
+ is that it can "spoof" the IP source address, so that the copies appear to
+ come from the original source, rather than the relay. Currently only supports
+ IPv4.
+ .
+ It can been used to distribute e.g. Netflow packets, SNMP traps (but not
+ informs), or Syslog messages to multiple receivers.

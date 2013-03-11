@@ -1,0 +1,124 @@
+From: John Ferlito <johnf@inodes.org>
+Date: Tue, 12 Mar 2013 09:20:40 +1100
+Subject: Add manpage for samplicate
+
+---
+ samplicate.1 |  109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+ create mode 100644 samplicate.1
+
+diff --git a/samplicate.1 b/samplicate.1
+new file mode 100644
+index 0000000..eb398f3
+--- /dev/null
++++ b/samplicate.1
+@@ -0,0 +1,109 @@
++.\"                                      Hey, EMACS: -*- nroff -*-
++.\" (C) Copyright 2013 John Francesco Ferlito <johnf@inodes.org>,
++.\"
++.\" First parameter, NAME, should be all caps
++.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
++.\" other parameters are allowed: see man(7), man(1)
++.TH SAMPLICATOR 8 "March 12, 2013"
++.\" Please adjust this date whenever revising the manpage.
++.\"
++.\" Some roff macros, for reference:
++.\" .nh        disable hyphenation
++.\" .hy        enable hyphenation
++.\" .ad l      left justify
++.\" .ad b      justify to both left and right margins
++.\" .nf        disable filling
++.\" .fi        enable filling
++.\" .br        insert line break
++.\" .sp <n>    insert n+1 empty lines
++.\" for manpage-specific macros, see man(7)
++.SH NAME
++samplicator \- Send copies of (UDP) datagrams to multiple receivers
++.SH SYNOPSIS
++.B samplicator
++.RI [ options ] " destination" ...
++.SH DESCRIPTION
++This manual page documents briefly the
++.B samplicator
++command.
++.PP
++.\" TeX users may be more comfortable with the \fB<whatever>\fP and
++.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
++.\" respectively.
++\fBsamplicator\fP listens for UDP datagrams on a network port, and sends copies
++of these datagrams on to a set of destinations. Optionally, it can perform
++sampling, i.e. rather than forwarding every packet, forward only 1 in N.
++Another option is that it can "spoof" the IP source address, so that the copies
++appear to come from the original source, rather than the relay. Currently only
++supports IPv4. It can been used to distribute e.g. Netflow packets, SNMP
++traps (but not informs), or Syslog messages to multiple receivers.
++
++.SH OPTIONS
++A summary of options is included below.
++.TP
++.B \-h
++Show summary of options.
++.TP
++.B \-V
++Show version of program.
++.TP
++.B \-d <level>
++Set the debugging level
++.TP
++.B \-s <address>
++set interface address on which to listen for incoming packets (default any)
++.TP
++.B \-p <port
++Set the UDP port on which to listen for incoming packets (default 2000)
++.TP
++.B \-b <buflen>
++Size of receive buffer (default 65536)
++.TP
++.B \-c configfile
++Specify a config file to read
++.TP
++.B \-x <delay>
++Specify a transmission delay in units of microseconds
++.TP
++.B \-S
++Maintain (spoof) source addresses
++.TP
++.B \-n
++Don't compute UDP checksum (only relevant with -S)
++.TP
++.B \-f
++Fork program into background
++.IP "\fI destination\fP"
++.RS
++Each <destination> should be specified as <addr>[/<port>[/<interval>]], where
++.LP
++.TP
++.B addr
++IP address of the receiver
++.TP
++.B port
++port UDP number of the receiver (default 2000)
++.TP
++.B freq
++number of received datagrams between successive copied datagrams for this receiver.
++.br
++
++.SH CONFIG FILE
++One entry per line
++.RS
++a.b.c.d[/e.f.g.h]: receiver ...
++.IP
++Where:
++.TP
++.B a.b.c.d
++Is the senders IP address
++.TP
++.B e.f.g.h
++is a mask to apply to the sender (default 255.255.255.255)
++.TP
++.B receiver
++See destination above.
++
++Receivers specified on the command line will get all packets, those specified
++in the config-file will get only packets with a matching source.
++
