@@ -21,7 +21,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC=samplicator             # Introduce a short description here
 NAME=samplicator             # Introduce the short server's name here
 DAEMON=/usr/bin/samplicate   # Introduce the server's location here
-DAEMON_ARGS=""               # Arguments to run the daemon with
+DAEMON_OPTS=""               # Arguments to run the daemon with
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
@@ -50,7 +50,7 @@ do_start()
 	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
 		|| return 1
 	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON -- \
-		$DAEMON_ARGS \
+		$DAEMON_OPTS \
 		|| return 2
 	# Add code here, if necessary, that waits for the process to be ready
 	# to handle requests from services started subsequently which depend
