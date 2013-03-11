@@ -9,7 +9,7 @@ Subject: Add manpage for samplicate
 
 diff --git a/samplicate.8 b/samplicate.8
 new file mode 100644
-index 0000000..eb398f3
+index 0000000..7ba53b0
 --- /dev/null
 +++ b/samplicate.8
 @@ -0,0 +1,109 @@
@@ -84,7 +84,7 @@ index 0000000..eb398f3
 +Maintain (spoof) source addresses
 +.TP
 +.B \-n
-+Don't compute UDP checksum (only relevant with -S)
++Don't compute UDP checksum (only relevant with \-S)
 +.TP
 +.B \-f
 +Fork program into background
@@ -120,5 +120,5 @@ index 0000000..eb398f3
 +See destination above.
 +
 +Receivers specified on the command line will get all packets, those specified
-+in the config-file will get only packets with a matching source.
++in the config\-file will get only packets with a matching source.
 +
