@@ -3,15 +3,15 @@ Date: Tue, 12 Mar 2013 09:20:40 +1100
 Subject: Add manpage for samplicate
 
 ---
- samplicate.1 |  109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ samplicate.8 |  109 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 109 insertions(+)
- create mode 100644 samplicate.1
+ create mode 100644 samplicate.8
 
-diff --git a/samplicate.1 b/samplicate.1
+diff --git a/samplicate.8 b/samplicate.8
 new file mode 100644
 index 0000000..eb398f3
 --- /dev/null
-+++ b/samplicate.1
++++ b/samplicate.8
 @@ -0,0 +1,109 @@
 +.\"                                      Hey, EMACS: -*- nroff -*-
 +.\" (C) Copyright 2013 John Francesco Ferlito <johnf@inodes.org>,
