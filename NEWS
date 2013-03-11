@@ -1,0 +1,86 @@
+Samplicator NEWS -- history of user-visible changes	-*- text -*-
+
+Copyright (c) 2000-2005 Simon Leinen  <simon.leinen@switch.ch>
+
+Version 1.3.7:
+
+The size limit for replicated UDP datagrams has been increased from
+1500 to 65535, the maximum size for UDP datagrams.  It should be
+tested whether such large packets are sent out (i.e. fragmented)
+correctly on all systems when "raw" (spoofing) mode is used.
+
+Samplicate now has a `-V' option that causes it to output its
+version.  The version is also included in the normal `usage' message.
+
+Bug fix: The `-x' option is no longer ignored when a configuration
+file is specified using `-c'.
+
+Bug fix: Spoofing now works on little-endian (Intel/AMD) Solaris
+systems.
+
+Bug fix: Corrected the type of some setsockopt() arguments when the
+send or receive buffer sizes are set.
+
+Version 1.3.6:
+
+Checkpoint after some cleanup (update e-mail addresses etc.) for the
+transition to Google Code hosting.  No functional changes from 1.3.5.
+
+Version 1.3.5:
+
+Spoofed mode (`-S') now computes UDP checksums.  This can be
+suppressed with `-n' if it causes problems, but in general you should
+leave it on for better reliability.  Patch by Gary Mikula.
+
+Version 1.3.4:
+
+Added new options contributed by James Sella: `-s' is used to specify
+an address that the program binds to (default `any'), and `-f' causes
+the program to fork itself into the background.
+
+Version 1.3.3:
+
+Fixed an initialization bug that could randomly cause spoofing mode to
+be enabled even without `-S'.
+
+Version 1.3.2:
+
+Fixed argument parsing and allow TTL specification.
+
+In source address spoofing mode, convert IP header fields to network
+order for some operating systems that are known to require it.
+
+Version 1.3.1:
+
+Added patch to make source address spoofing work on BSD-based systems.
+
+Version 1.3:
+
+Added config file option "-c" which implements samplication to
+peers depending on the source of the packet.  See README for a
+short description of this feature.
+
+Version 1.2.1:
+
+Fixed a stupid bug introduced in the last change.  This will teach me
+to always use `gcc -Wall'.
+
+Version 1.2:
+
+Added `-b' argument to set the size of the socket buffers.  The
+default is now no longer the system default, but 65536.  If you
+experience packet drops, you can try to increase the size of the
+socket buffers.
+
+Version 1.1:
+
+Added `spoof' mode (-S).  If this is set, the samplicator will
+conserve the original source address in replicated packets.  Note that
+in order to use this, root privilege is necessary on most systems.
+This feature has been introduced for the benefit of post-processing
+software that uses the source address in NetFlow accounting packets.
+For instance, Fluxoscope and newer Cflowd releases use SNMP to get
+per-interface configuration data from each NetFlow-sending router.
+
+Converted to Automake and added files to comply with GNU coding and
+documentation standards.

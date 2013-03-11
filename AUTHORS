@@ -1,0 +1,32 @@
+The orginal author of the package could not be identified with
+absolute certainty.  He or she is believed to be from the Italian
+research networking community.
+
+David Harmelin (DANTE) has added the sampling feature.
+
+Simon Leinen <simon.leinen@switch.ch> removed lots of unused code,
+implemented source address spoofing and packaged the program for
+easier compilation/installation.
+
+Otmar Lendl <O.Lendl@KPNQwest.at> added source-dependent rules
+and config-file parsing.
+
+Vladimir A. Jakovenko <vovik@lucky.net> contributed a patch that makes
+source address spoofing work under BSD-derived systems such as FreeBSD
+and OpenBSD.  These require an additional socket option (IP_HDRINCL).
+
+Juraj Sucik <Juraj.Sucik@cern.ch> found a bug that would cause the
+`spoof' option to be randomly enabled even though the `-S' argument
+wasn't passed to the program.
+
+James Sella <sella@digital-genesis.com> contributed the `-s' (bind to
+specific address) and `-f' (fork into background) options.
+
+Gary Mikula <g2ugzm@hotmail.com> contributed UDP checksum
+generation in `spoof' mode.
+
+Brad Dreisbach <bradd@ntt.net> found and fixed a portability issue in
+rawsend.c that broke spoofing mode for little-endian Solaris systems.
+
+John Heasley <heas@shrubbery.net> found and fixed the int/long type
+error in setsockopt() calls.
